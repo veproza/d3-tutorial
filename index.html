@@ -61,6 +61,18 @@
                     <td>4</td>
                     <td><svg></svg></td>
                 </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Belarus</td>
+                    <td>3</td>
+                    <td><svg></svg></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Slovakia</td>
+                    <td>2</td>
+                    <td><svg></svg></td>
+                </tr>
             </tbody>
         </table>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -85,6 +97,7 @@
             enteringRow.append("td");
             enteringRow.append("td");
             enteringRow.append("td").append("svg");
+        ghostRows.exit().remove();
     </script>
     </body>
 </html>
