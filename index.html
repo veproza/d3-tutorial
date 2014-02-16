@@ -67,12 +67,6 @@
                     <td>3</td>
                     <td><svg></svg></td>
                 </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Slovakia</td>
-                    <td>2</td>
-                    <td><svg></svg></td>
-                </tr>
             </tbody>
         </table>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -98,6 +92,20 @@
             enteringRow.append("td");
             enteringRow.append("td").append("svg");
         ghostRows.exit().remove();
+        var validRows = table.selectAll("tr");
+        validRows.select("td:first-child").html(function(country, index) {
+            return index + 1;
+        });
+        validRows.select("td:nth-child(2)").html(function(country) {
+            return country.name;
+        });
+        validRows.select("td:nth-child(3)").html(function(country) {
+            var sum = 0;
+            for(var i = 0; i < country.medals.length; i++) {
+                sum += country.medals[i];
+            }
+            return sum;
+        });
     </script>
     </body>
 </html>
