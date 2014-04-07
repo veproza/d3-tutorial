@@ -81,50 +81,52 @@
         </table>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script>
-        var years = [1998, 2002, 2006, 2010];
-        var countries = [
-            {
-                name: 'CAN',
-                medals: [ 11, 11, 22, 24 ]
-            }, {
-                name: 'CZE',
-                medals: [ 3, 3, 4, 6 ]
-            }, {
-                name: 'BEL',
-                medals: [ 1, 2, 5, 4 ]
-            }
-        ];
-        var table = d3.select("table tbody");
-        var ghostRows = table.selectAll("tr").data(countries);
-        var enteringRow = ghostRows.enter().append("tr")
-            enteringRow.append("td");
-            enteringRow.append("td");
-            enteringRow.append("td");
-            enteringRow.append("td").append("svg");
-        ghostRows.exit().remove();
-        var actualRows = table.selectAll("tr");
-        actualRows.select("td:nth-child(2)").html(function(d) { return d.name })
-        actualRows.select("td:nth-child(1)").html(function(d, i) { return i + 1 } )
-        actualRows.select("td:nth-child(3)").html(function(d) {
-            sum = 0;
-            for(var i = 0; i < d.medals.length; i++) {
-                sum = d.medals[i];
-            }
-            return sum;
-        });
-        var x = d3.scale.linear()
-            .domain([0, 3])
-            .range([0, 160]);
-        var y = d3.scale.linear()
-            .domain([0, 24])
-            .range([30, 0]);
-        var line = d3.svg.line()
-            .x(function(d, i) { return x(i); })
-            .y(function(d, i) { return y(d); });
+        d3.json("http://static.sulek.eu/fss/data.json", function(countries) {
+            var countries = [
+                {
+                    name: 'CAN',
+                    medals: [ 11, 11, 22, 24 ]
+                }, {
+                    name: 'CZE',
+                    medals: [ 3, 3, 4, 6 ]
+                }, {
+                    name: 'BEL',
+                    medals: [ 1, 2, 5, 4 ]
+                }
+            ];
+            var years = [1998, 2002, 2006, 2010];
+            var table = d3.select("table tbody");
+            var ghostRows = table.selectAll("tr").data(countries);
+            var enteringRow = ghostRows.enter().append("tr")
+                enteringRow.append("td");
+                enteringRow.append("td");
+                enteringRow.append("td");
+                enteringRow.append("td").append("svg");
+            ghostRows.exit().remove();
+            var actualRows = table.selectAll("tr");
+            actualRows.select("td:nth-child(2)").html(function(d) { return d.name })
+            actualRows.select("td:nth-child(1)").html(function(d, i) { return i + 1 } )
+            actualRows.select("td:nth-child(3)").html(function(d) {
+                sum = 0;
+                for(var i = 0; i < d.medals.length; i++) {
+                    sum = d.medals[i];
+                }
+                return sum;
+            });
+            var x = d3.scale.linear()
+                .domain([0, 3])
+                .range([0, 160]);
+            var y = d3.scale.linear()
+                .domain([0, 24])
+                .range([30, 0]);
+            var line = d3.svg.line()
+                .x(function(d, i) { return x(i); })
+                .y(function(d, i) { return y(d); });
 
-        actualRows.select("td:nth-child(4) svg")
-            .append("path")
-                .attr("d", function(d) {return line(d.medals); })
+            actualRows.select("td:nth-child(4) svg")
+                .append("path")
+                    .attr("d", function(d) {return line(d.medals); })
+        })
     </script>
     </body>
 </html>
