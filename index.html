@@ -101,6 +101,13 @@
         var actualRows = table.selectAll("tr");
         actualRows.select("td:nth-child(2)").html(function(d) { return d.name })
         actualRows.select("td:nth-child(1)").html(function(d, i) { return i + 1 } )
+        actualRows.select("td:nth-child(3)").html(function(d) {
+            sum = 0;
+            for(var i = 0; i < d.medals.length; i++) {
+                sum = d.medals[i];
+            }
+            return sum;
+        });
     </script>
     </body>
 </html>
