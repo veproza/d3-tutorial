@@ -114,6 +114,9 @@
         var y = d3.scale.linear()
             .domain([0, 24])
             .range([0, 30]);
+        var line = d3.svg.line()
+            .x(function(d, i) { return x(i); })
+            .y(function(d, i) { return y(d); });
     </script>
     </body>
 </html>
