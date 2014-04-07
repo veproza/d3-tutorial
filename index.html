@@ -117,7 +117,7 @@
             .range([0, 160]);
         var y = d3.scale.linear()
             .domain([0, 24])
-            .range([0, 30]);
+            .range([30, 0]);
         var line = d3.svg.line()
             .x(function(d, i) { return x(i); })
             .y(function(d, i) { return y(d); });
