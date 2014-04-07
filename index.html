@@ -119,9 +119,8 @@
             .y(function(d, i) { return y(d); });
 
         actualRows.select("td:nth-child(4) svg")
-            .datum(function(d) {return d.medals})
             .append("path")
-                .attr("d", line)
+                .attr("d", function(d) {return line(d.medals); })
     </script>
     </body>
 </html>
