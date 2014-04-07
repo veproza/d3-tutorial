@@ -99,6 +99,7 @@
             enteringRow.append("td").append("svg");
         ghostRows.exit().remove();
         var actualRows = table.selectAll("tr");
+        actualRows.select("td:nth-child(2)").html(function(d) { return d.name })
     </script>
     </body>
 </html>
